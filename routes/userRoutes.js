@@ -3,6 +3,7 @@ const router = express.Router();
 const { loginAdmin } = require('../controllers/userController');
 const { protect } = require('../middleware/authMiddleware');
 
+
 // POST → /api/admin/login
 router.post('/login', loginAdmin);
 // Protected Route

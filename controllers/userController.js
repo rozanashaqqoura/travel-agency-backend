@@ -8,6 +8,7 @@ const generateToken = (id) => {
   });
 };
 
+
 // 👨‍💻 Administrator Login
 const loginAdmin = async (req, res) => {
   const { email, password } = req.body;

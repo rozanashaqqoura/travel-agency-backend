@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    default: 'admin', // Currently only the manager
+    enum: ['admin', 'user'], // بس هدول الخيارين
+    default: 'user', // المستخدم العادي
   }
 });
 
