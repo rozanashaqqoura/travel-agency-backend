@@ -7,6 +7,8 @@ const tripRoutes = require('./routes/tripRoutes');
 const bookingRoutes = require("./routes/bookingRoutes");
 const userClientRoutes = require('./routes/userClientRoutes');
 const reviewRoutes = require("./routes/reviewRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+
 
 
 
@@ -28,6 +30,8 @@ app.use('/api/trips', tripRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use('/api/users', userClientRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/admin", adminRoutes);
+
 
 
 
