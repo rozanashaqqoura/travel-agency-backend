@@ -49,7 +49,34 @@ const deleteTrip = asyncHandler(async (req, res) => {
   await Trip.deleteOne({ _id: req.params.id });
   res.status(200).json({ message: 'Trip deleted successfully' });
 });
+// @desc    Search trips by keyword (title or destination)
+// @route   GET /api/trips/search?keyword=xxx
+// @access  Public
+const searchTrips = async (req, res) => {
+  try {
+    const keyword = req.query.keyword;
+
+    if (!keyword) {
+      return res.status(400).json({ message: "Please provide a search keyword." });
+    }
+
+    const trips = await Trip.find({
+      $or: [
+        { title: { $regex: keyword, $options: "i" } },
+        { destination: { $regex: keyword, $options: "i" } }
+      ]
+    });
+
+    if (trips.length === 0) {
+      return res.status(404).json({ message: "No matching trips found." });
+    }
+
+    res.status(200).json(trips);
+  } catch (error) {
+    res.status(500).json({ message: "Search failed", error: error.message });
+  }
+};
 
 
-module.exports = { createTrip, getAllTrips ,updateTrip ,deleteTrip };
+module.exports = { createTrip, getAllTrips ,updateTrip ,deleteTrip ,searchTrips };
 
